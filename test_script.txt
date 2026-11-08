@@ -1,0 +1,63 @@
+bg temple assets/test/temple.bmp
+bg shop assets/test/shop.bmp
+bg main_menu assets/test/test-menu.png
+anim animated_main_menu assets/test/animation.gif
+audio 0 assets/diditelluthatimissyou.wav
+audio 1 assets/button_hover.wav
+audio 2 assets/button_click.wav
+char yuzuru_otonashi_idle assets/test/yuzuru_otonashi/yuzuru_otonashi_idle.bmp
+char yuzuru_otonashi_armscrossed assets/test/yuzuru_otonashi/yuzuru_otonashi_armscrossed.bmp
+char yuzuru_otonashi_side assets/test/yuzuru_otonashi/yuzuru_otonashi_side.bmp
+
+btn hvr audio=1
+btn clk audio=2
+
+startmenu
+playaudio 0 vol=0.5,fade=0.0001
+playbutton Play posx=50,posy=300,width=300,height=60
+continuebutton Load posx=50,posy=370,width=300,height=60
+settingsbutton Settings posx=50,posy=440,width=300,height=60
+quitbutton Quit posx=50,posy=510,width=300,height=60
+showbg main_menu 20.0
+//playanim animated_main_menu
+waitfor buttonevent
+
+hidebg main_menu fade=10.0
+stopanim animated_main_menu
+stopaudio 0 fade=0.002
+
+waitfor delay 1000
+
+showbg temple 10.0
+showchar yuzuru_otonashi_idle posx=20,posy=650,scalex=0.5,scaley=0.5,fade=10.0
+
+showtext Otonashi "Yo, watcha doing over there? Dont you know its dangerous to be snooping around this place?"
+waitfor advance
+cleartext
+
+choices 2 Cleaning the temple,Thinking of cleaning the temple
+waitfor choice
+
+case 1 jump:yhf
+case 2 jump:help
+
+yhf
+showtext _ "Otonashi: Well, you have fun with that"
+waitfor advance
+cleartext
+hidechar yuzuru_otonashi_idle 50.0
+end
+
+help
+hidechar yuzuru_otonashi_idle fade=50.0
+waitfor advance
+crossfade temple dest=shop,fade=20.0
+showchar yuzuru_otonashi_idle posx=20,posy=650,scalex=0.5,scaley=0.5,fade=20.0,speed=20,movetox=250
+waitfor advance
+crossfade yuzuru_otonashi_idle dest=yuzuru_otonashi_armscrossed,fade=15.0
+showtext _ "Otonashi: Let me help you then! Together, we can get it done faster"
+waitfor advance
+showtext _ "Player: Thanks!"
+waitfor advance
+cleartext
+end

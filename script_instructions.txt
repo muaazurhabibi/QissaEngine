@@ -1,0 +1,15 @@
+scripting language follows this layout:
+command opcode addditional_parameters
+
+list of commands:
+    bg bg_name bmp_file_location
+    char char_name bmp_file_location
+    showbg bg_name
+    showchar char_name posx=,posy=,scalex=,scaley=,fade=,speed=,movetox=
+    hidechar char_name fade_speed
+    choices no_of_choices choice1_text,choice2_text,...
+    waitfor action_to_waitfor
+    case choice_number jump:symbol_to_jumpto
+
+    showtext _ text
+    cleartext
